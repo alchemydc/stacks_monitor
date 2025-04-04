@@ -4,12 +4,11 @@
 The Stacks Monitor application follows a modern web application architecture with the following components:
 
 ### Frontend
-- **Next.js App Router**: Provides the foundation for the React-based UI with server-side rendering capabilities
+- **Viter**: Provides the foundation for the React-based UI
 - **React Components**: Modular UI components for displaying signer data, alerts, and configuration options
 - **Tailwind CSS**: Utility-first CSS framework for styling the application
 
 ### Backend
-- **Next.js API Routes**: Serverless functions for handling API requests
 - **Data Fetching Layer**: Services for interacting with the Stacks blockchain API
 - **Alert System**: Logic for monitoring thresholds and triggering alerts
 - **Database**: SQLite for development/testing, with potential migration to Supabase for production
@@ -20,7 +19,7 @@ The Stacks Monitor application follows a modern web application architecture wit
 - **Potential Vercel Deployment**: For production hosting
 
 ## Key Technical Decisions
-1. **Next.js with App Router**: Chosen for its modern React framework capabilities, server components, and simplified routing
+1. **Vite**: Chosen for its modern React framework capabilities, and fast development time
 2. **TypeScript**: Used throughout the application for type safety and improved developer experience
 3. **SQLite for Development**: Lightweight database for local development and testing
 4. **Docker for Packaging**: Ensures consistent environment across development and deployment
@@ -30,8 +29,7 @@ The Stacks Monitor application follows a modern web application architecture wit
 1. **Service Layer Pattern**: Separate services for API interactions, data processing, and alert management
 2. **Repository Pattern**: For database interactions, abstracting the underlying storage mechanism
 3. **Component Composition**: Building UI from small, reusable components
-4. **Server Components**: Leveraging Next.js App Router's server components for data fetching
-5. **Client Components**: For interactive UI elements requiring client-side JavaScript
+4. **Client Components**: For interactive UI elements requiring client-side JavaScript
 
 ## Component Relationships
 ```

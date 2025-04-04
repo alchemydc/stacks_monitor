@@ -6,7 +6,8 @@ ref: https://docs.cline.bot/improving-your-prompting-skills/cline-memory-bank#me
 Build an app that will continuously monitor the performance of a signer on the Stacks blockchain network. 
 
 ## Core Features
-- Use the stacks signer API to enumerate all of the signers active for the current POX cycle
+- Use the stacks API to enumerate data for the current POX cycle
+- Use the stacks API to enumerate all of the signers active for the current POX cycle
 - Allow the user to select one or more signers to monitor
 - Send alerts if the signer's stacked STX falls below the threshold for the next POX cycle
 - Send alerts if the signer's performance (latency or rejected/missing blocks rate) falls outside acceptable thresholds
@@ -17,7 +18,7 @@ This app will be used by pool operators on the Stacks network.  The target users
 
 ## Technical Preferences
 - Typescript
-- Next.js React framework with app router
+- Vite and React frameworks
 - Tailwind CSS
 - sqlite db for dev/testing.  May migrate to Supabase for production
 - Docker for packaging and deployment for dev/test. May migrate to Vercel for production.
