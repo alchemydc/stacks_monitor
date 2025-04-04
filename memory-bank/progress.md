@@ -9,16 +9,20 @@
 - Implemented a basic page to show POX info
 - Extended the StacksAPIService to retrieve all signers for the current POX cycle
 - Updated the test case to handle the possibility of the signers API returning no results
+- Replaced Next.js with Vite
+- Removed Tailwind CSS
+- Updated all dependencies to their latest versions
+- Tailwind CSS has been re-installed and configured
 
 ## What's Left to Build
 
 - Stylize the POX info page using tailwind
 - Stacks API integration to fetch signers for a specific POX cycle from the signer API
-- SignerSelector component
-- SignerList component
+- Build the SignerSelector component to allow users to select signers to monitor.
+- Create the SignerList component to display the selected signers and their data.
+- Set up the SQLite database for storing user preferences and historical data.
 - AlertsPanel component
 - Configuration settings
-- SQLite database setup
 - Alert system
 - Docker configuration
 - Deployment pipeline
@@ -32,6 +36,7 @@
 - Signer API is currently returning http/200 but no results for the current cycle
 
 ## Evolution of Project Decisions
-- The decision to use Next.js with the App Router was made to leverage server components and simplified routing.
 - TypeScript was chosen for type safety and improved developer experience.
 - SQLite was selected for its simplicity and ease of use during development.
+- Added "Recent Documentation Updates" section to `activeContext.md`
+- Reviewed all memory bank files
