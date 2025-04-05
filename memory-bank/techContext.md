@@ -30,6 +30,8 @@
 - **sqlite3**: For interacting with the SQLite database
 - Updated all dependencies to their latest versions
 - Tailwind CSS has been re-installed and configured
+- Removed Next.js and migrated to a plain React app
+- **react-router-dom**: For handling navigation
 
 ## Tool Usage Patterns
 - **VS Code**: Recommended IDE for development

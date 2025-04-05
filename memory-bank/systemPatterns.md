@@ -30,6 +30,7 @@ The Stacks Monitor application follows a modern web application architecture wit
 2. **Repository Pattern**: For database interactions, abstracting the underlying storage mechanism
 3. **Component Composition**: Building UI from small, reusable components
 4. **Client Components**: For interactive UI elements requiring client-side JavaScript
+5. **Navigation**: Using React Router for navigation between pages
 
 ## Component Relationships
 ```
@@ -43,6 +44,7 @@ App
 ├── Configuration
 │   ├── ThresholdSettings
 │   └── NotificationSettings
+├── StyledLink
 └── Services
     ├── StacksAPIService
     ├── AlertService

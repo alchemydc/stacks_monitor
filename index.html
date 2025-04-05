@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stacks Monitor</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link href="src/styles.css" rel="stylesheet"> -->
+  <title>Stacks Monitor</title>
+</head>
+<body>
+  <div class="bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center">
+    <div class="bg-white dark:bg-gray-800 rounded-lg px-6 py-8 ring shadow-xl ring-gray-900/5">
+      <div>
+        <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
+          <svg class="h-6 w-6 stroke-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5L12 2z"></path>
+            <path d="M2 17l10 5 10-5V7L12 12 2 7v10z"></path>
+          </svg>
+        </span>
+      </div>
+      <h3 class="text-gray-900 dark:text-white mt-5 text-base font-medium tracking-tight ">Stacks Monitor</h3>
+      <p class="text-gray-500 dark:text-gray-400 mt-2 text-sm ">
+        A simple monitor for Stacks nodes.
+      </p>
+    </div>
+<div class="bg-white dark:bg-gray-800 rounded-lg px-6 py-8 ring shadow-xl ring-gray-900/5">
+  <div id="root"></div>
+</div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
 </html>
