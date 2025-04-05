@@ -1,16 +1,18 @@
 # Active Context
 
 ## Current Work Focus
-- Setting up the basic project structure with Next.js, TypeScript, and Tailwind CSS.
-- Integrating with the Stacks POX api
-- Implementing the signer selection component.
+- Adding a link to the POX info page from the landing page.
+- Stylizing the link to the POX info page using a reusable component.
+- Fixing the TypeScript errors related to the `PoxResponse` type.
 
 ## Recent Changes
 - Created the initial memory bank files: `productContext.md`, `systemPatterns.md`, and `techContext.md`.
 - Documented the project overview, system architecture, and technical context.
 - Read all memory bank files.
-- Implemented the Stacks API integration to fetch data from the /v2/pox endpoint.
-- Generalized the fetchCurrentCycle function to return all data from /v2/pox and renamed it to fetchPoxData.
+- Implemented the Stacks API integration to fetch data from the /v2/pox endpoint and generalized the function to return all data.
+- Added a link to the POX info page from the landing page using React Router.
+- Created a reusable component for styled links (`StyledLink.tsx`).
+- Fixed the TypeScript errors related to the `PoxResponse` type in `src/main.tsx` and `src/components/PoxDataDisplay.tsx`.
 
 ## Next Steps
 1. Build the SignerSelector component to allow users to select signers to monitor.
@@ -40,7 +42,6 @@
 
 ## Learnings and Project Insights
 - The Stacks Signer API provides comprehensive data about signers on the Stacks blockchain.
-- Next.js App Router simplifies the development of server-rendered React applications.
 - Tailwind CSS enables rapid UI development with consistent design patterns.
 - The Stacks API integration now correctly fetches signer data using the `/v2/pox` endpoint to determine the current cycle.
 

@@ -13,10 +13,13 @@
 - Removed Tailwind CSS
 - Updated all dependencies to their latest versions
 - Tailwind CSS has been re-installed and configured
+- Removed Next.js and migrated to a plain React app
+- Added a link to the POX info page from the landing page.
+- Created a reusable component for styled links.
+- Fixed the TypeScript errors related to the `PoxResponse` type.
 
 ## What's Left to Build
 
-- Stylize the POX info page using tailwind
 - Stacks API integration to fetch signers for a specific POX cycle from the signer API
 - Build the SignerSelector component to allow users to select signers to monitor.
 - Create the SignerList component to display the selected signers and their data.
@@ -31,6 +34,8 @@
 - The project is in the initial setup phase.
 - The memory bank has been initialized with core documentation files.
 - The development environment is being configured.
+- A link to the POX info page has been added to the landing page.
+- The POX data is now displayed correctly on the POX data page.
 
 ## Known Issues
 - Signer API is currently returning http/200 but no results for the current cycle
