@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import PoxDataDisplay from './components/PoxDataDisplay';
 import { fetchPoxData } from './services/StacksAPIService';
-import StyledLink from './components/StyledLink';
+import SignerSelector from './components/SignerSelector';
 import './styles.css';
 
 interface PoxResponse {
@@ -64,24 +64,19 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={
-          <div className="bg-white dark:bg-gray-800 rounded-lg px-6 py-8 ring shadow-xl ring-gray-900/5">
-            <div>
-              <span className="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
-                <svg className="h-6 w-6 stroke-white" >
-                </svg>
-              </span>
-            </div>
-            <h3 className="text-gray-900 dark:text-white mt-5 text-base font-medium tracking-tight ">Stacks Monitoring Tools</h3>
-            <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm ">
-              Lorem Ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.
-            </p>
-            {poxData && <StyledLink to="/poxdata">View POX Data</StyledLink>}
-          </div>
-        } />
-        <Route path="/poxdata" element={<PoxDataDisplay poxData={poxData} />} />
-      </Routes>
+      <div className="bg-white dark:bg-gray-800 rounded-lg px-6 py-8 ring shadow-xl ring-gray-900/5">
+        <h3 className="text-gray-900 dark:text-white mt-5 text-base font-medium tracking-tight ">Stacks Monitoring Tools</h3>
+        <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm ">
+          Lorem Ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.
+        </p>
+        <Link to="/poxdata" className="text-indigo-600 hover:text-indigo-800">View POX Data</Link>
+        <br />
+        <Link to="/signers" className="text-indigo-600 hover:text-indigo-800">View Signers</Link>
+        <Routes>
+          <Route path="/poxdata" element={<PoxDataDisplay poxData={poxData} />} />
+          <Route path="/signers" element={<SignerSelector />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

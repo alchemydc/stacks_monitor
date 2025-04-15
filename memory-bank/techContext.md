@@ -28,9 +28,7 @@
 - **react**: For building the user interface
 - **vite**: For the frontend framework
 - **sqlite3**: For interacting with the SQLite database
-- Updated all dependencies to their latest versions
-- Tailwind CSS has been re-installed and configured
-- Removed Next.js and migrated to a plain React app
+- **Tailwind CSS**: for easy styling
 - **react-router-dom**: For handling navigation
 
 ## Tool Usage Patterns

@@ -8,7 +8,8 @@ Build an app that will continuously monitor the performance of a signer on the S
 ## Core Features
 - Use the stacks API to enumerate data for the current POX cycle
 - Use the stacks API to enumerate all of the signers active for the current POX cycle
-- Allow the user to select one or more signers to monitor
+- Allow the user to select a single signer to monitor
+- Use the stacks API to fetch signer metrics for a particular signer during the current cycle
 - Send alerts if the signer's stacked STX falls below the threshold for the next POX cycle
 - Send alerts if the signer's performance (latency or rejected/missing blocks rate) falls outside acceptable thresholds
 - Send an alert when the prepare phase of the next POX cycle is about to begin
