@@ -96,5 +96,55 @@ async function fetchSignersForCurrentCycle(): Promise<CycleSigner> {
   }
 }
 
-export { fetchPoxData, fetchSignersForCurrentCycle };
+async function fetchSigners(): Promise<string[]> {
+  try {
+    const cycleSignerData = await fetchSignersForCurrentCycle();
+    if (cycleSignerData && cycleSignerData.results) {
+      return cycleSignerData.results.map((signer) => signer.signer_key);
+    } else {
+      console.warn("Signers API returned no results");
+      return [];
+    }
+  } catch (error: any) {
+    console.error("Error fetching signers:", error);
+    return [];
+  }
+}
+
+interface SignerMetrics {
+  signer_key: string;
+  slot_index: number;
+  weight: number;
+  weight_percentage: number;
+  stacked_amount: string;
+  stacked_amount_percent: number;
+  stacked_amount_rank: number;
+  proposals_accepted_count: number;
+  proposals_rejected_count: number;
+  proposals_missed_count: number;
+  average_response_time_ms: number;
+  last_seen: string;
+  version: string;
+}
+
+async function fetchSignerMetrics(signerId: string): Promise<SignerMetrics | null> {
+  try {
+    const poxData = await fetchPoxData();
+    const currentCycleId = poxData.current_cycle.id;
+    const url = `${API_ENDPOINT}/signer-metrics/v1/cycles/${currentCycleId}/signers/${signerId}`;
+    if (process.env.NODE_ENV === 'development') {
+      console.log("Fetching signer metrics from URL:", url);
+    }
+    const response = await axios.get<SignerMetrics>(url);
+    if (process.env.NODE_ENV === 'development') {
+      console.log("Signer Metrics API Response:", response.data);
+    }
+    return response.data;
+  } catch (error: any) {
+    console.error("Error fetching signer metrics:", error);
+    return null;
+  }
+}
+
+export { fetchPoxData, fetchSignersForCurrentCycle, fetchSigners, fetchSignerMetrics };
 export type { Signer };

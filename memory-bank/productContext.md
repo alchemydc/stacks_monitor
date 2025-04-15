@@ -12,11 +12,12 @@ The Stacks Monitor application exists to help pool operators on the Stacks block
 ## How It Should Work
 1. The application will connect to the Stacks signer API to retrieve data about all active signers in the current PoX cycle.
 2. Users will be able to select specific signers they want to monitor.
-3. The system will continuously monitor selected signers for:
+3. The system will continuously monitor the selected signer for:
    - STX balance relative to the threshold for the next PoX cycle
    - Performance metrics including latency and rejected/missing blocks rate
    - Upcoming PoX cycle prepare phase
 4. When monitored metrics fall outside acceptable thresholds, the system will send alerts to the user.
+5. The user can view the details of the selected signer.
 
 ## User Experience Goals
 1. **Simplicity**: The interface should be clean and focused, allowing technical users to quickly access the information they need.

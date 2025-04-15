@@ -17,12 +17,13 @@
 - Added a link to the POX info page from the landing page.
 - Created a reusable component for styled links.
 - Fixed the TypeScript errors related to the `PoxResponse` type.
+- Implemented the SignerSelector component to allow users to select a single signer to monitor.
+- Created a new component called `SignerDetails` to show the details for a selected signer.
+- Created a new API call to fetch signer metrics for a particular signer during the current cycle.
 
 ## What's Left to Build
-
-- Stacks API integration to fetch signers for a specific POX cycle from the signer API
-- Build the SignerSelector component to allow users to select signers to monitor.
-- Create the SignerList component to display the selected signers and their data.
+- Update the `SignerDetails` component to display the signer metrics.
+- Work on the UI to make it less buggy and better looking.
 - Set up the SQLite database for storing user preferences and historical data.
 - AlertsPanel component
 - Configuration settings
@@ -36,9 +37,12 @@
 - The development environment is being configured.
 - A link to the POX info page has been added to the landing page.
 - The POX data is now displayed correctly on the POX data page.
+- The SignerSelector component is now implemented and allows users to select a single signer to monitor.
+- The SignerDetails component is now implemented and displays the details for the selected signer.
+- A new API call has been created to fetch signer metrics for a particular signer during the current cycle.
 
 ## Known Issues
-- Signer API is currently returning http/200 but no results for the current cycle
+- None
 
 ## Evolution of Project Decisions
 - TypeScript was chosen for type safety and improved developer experience.

@@ -35,15 +35,9 @@ The Stacks Monitor application follows a modern web application architecture wit
 ## Component Relationships
 ```
 App
-├── Dashboard
-│   ├── SignerSelector
-│   ├── SignerList
-│   │   └── SignerCard
-│   └── AlertsPanel
-│       └── AlertItem
-├── Configuration
-│   ├── ThresholdSettings
-│   └── NotificationSettings
+├── PoxDataDisplay
+├── SignerSelector
+│   └── SignerDetails
 ├── StyledLink
 └── Services
     ├── StacksAPIService

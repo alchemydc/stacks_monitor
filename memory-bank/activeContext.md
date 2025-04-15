@@ -1,9 +1,7 @@
 # Active Context
 
 ## Current Work Focus
-- Adding a link to the POX info page from the landing page.
-- Stylizing the link to the POX info page using a reusable component.
-- Fixing the TypeScript errors related to the `PoxResponse` type.
+Adding support for displaying signer metrics
 
 ## Recent Changes
 - Created the initial memory bank files: `productContext.md`, `systemPatterns.md`, and `techContext.md`.
@@ -13,11 +11,15 @@
 - Added a link to the POX info page from the landing page using React Router.
 - Created a reusable component for styled links (`StyledLink.tsx`).
 - Fixed the TypeScript errors related to the `PoxResponse` type in `src/main.tsx` and `src/components/PoxDataDisplay.tsx`.
+- Implemented the SignerSelector component to allow users to select a single signer to monitor.
+- Created a new component called `SignerDetails` to show the details for a selected signer.
+- Created a new API call to fetch signer metrics for a particular signer during the current cycle.
 
 ## Next Steps
-1. Build the SignerSelector component to allow users to select signers to monitor.
-2. Create the SignerList component to display the selected signers and their data.
-3. Set up the SQLite database for storing user preferences and historical data.
+1. Update the `SignerDetails` component to display the signer metrics.
+2. Work on the UI to make it less buggy and better looking.
+2. Set up the SQLite database for storing user preferences and historical data.
+3. Implement the alert system.
 
 ## Active Decisions and Considerations
 - **API Endpoints**:
