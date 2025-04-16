@@ -14,7 +14,7 @@ import type { PoxResponse } from './types';
 
 function AppContent() {
   const location = useLocation();
-  const shouldFetchPox = ['/signer-metrics'].some(path => 
+  const shouldFetchPox = ['/signer-metrics', '/signer'].some(path => 
     location.pathname.startsWith(path)
   ) || location.pathname === '/' || location.pathname === '/poxdata';
   
@@ -32,7 +32,7 @@ function AppContent() {
             error={error}
           />
         } />
-        <Route path="/signer/:signerKey" element={<SignerDetails />} />
+        <Route path="/signer/:signerKey" element={<SignerDetails poxData={poxData} loading={loading} error={error} />} />
       </Routes>
     </div>
   );
