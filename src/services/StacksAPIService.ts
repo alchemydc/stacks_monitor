@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { debug, debugAPI, debugUI, debugEvents } from '../utils/debug';
 
 const API_ENDPOINT = "https://api.hiro.so";
 
@@ -41,10 +42,9 @@ interface PoxResponse {
 
 async function fetchPoxData(): Promise<PoxResponse> {
   try {
+    debugAPI(`Fetching POX data from API endpoint: ${API_ENDPOINT}/v2/pox`);
     const response = await axios.get<PoxResponse>(`${API_ENDPOINT}/v2/pox`);
-    if (process.env.NODE_ENV === 'development') {
-      console.log("Stacks API Response:", response.data);
-    }
+    debug("POX API Response:", response.data);
     return response.data;
   } catch (error: any) {
     console.error("Error fetching POX data:", error);
@@ -81,14 +81,9 @@ async function fetchSignersForCurrentCycle(): Promise<CycleSigner> {
     const poxData = await fetchPoxData();
     const currentCycleId = poxData.current_cycle.id;
     const url = `${API_ENDPOINT}/signer-metrics/v1/cycles/${currentCycleId}/signers`;
-    // log url if in development mode
-    if (process.env.NODE_ENV === 'development') {
-      console.log("Fetching signers from URL:", url);
-    }
+    debugAPI(`Fetching signers from URL: ${url}`);
     const response = await axios.get<CycleSigner>(url);
-    if (process.env.NODE_ENV === 'development') {
-      console.log("Signers API Response:", response.data);
-    }
+    debugAPI("Signers API Response:", response.data);
     return response.data;
   } catch (error: any) {
     console.error("Error fetching signers:", error);
@@ -146,5 +141,18 @@ async function fetchSignerMetrics(signerId: string): Promise<SignerMetrics | nul
   }
 }
 
-export { fetchPoxData, fetchSignersForCurrentCycle, fetchSigners, fetchSignerMetrics };
-export type { Signer };
+async function fetchSignersForCycle(cycleId: number): Promise<CycleSigner> {
+  try {
+    const url = `${API_ENDPOINT}/signer-metrics/v1/cycles/${cycleId}/signers`;
+    debugAPI(`Fetching signers for cycle ${cycleId} from URL: ${url}`);
+    const response = await axios.get<CycleSigner>(url);
+    debugAPI("Signers API Response:", response.data);
+    return response.data;
+  } catch (error: any) {
+    console.error(`Error fetching signers for cycle ${cycleId}:`, error);
+    throw error;
+  }
+}
+
+export { fetchPoxData, fetchSignersForCurrentCycle, fetchSigners, fetchSignerMetrics, fetchSignersForCycle };
+export type { Signer, CycleSigner };

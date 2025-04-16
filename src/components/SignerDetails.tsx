@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { fetchSignerMetrics, Signer } from '../services/StacksAPIService';
 
 // Constants for thresholds
@@ -45,11 +46,8 @@ const MetricCard: React.FC<MetricCardProps> = ({ title, value, subValue, status 
   );
 };
 
-interface SignerDetailsProps {
-  signer: string | null;
-}
-
-const SignerDetails: React.FC<SignerDetailsProps> = ({ signer }) => {
+const SignerDetails: React.FC = () => {
+  const { signerKey } = useParams<{ signerKey: string }>();
   const [signerDetails, setSignerDetails] = useState<Signer | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -59,13 +57,13 @@ const SignerDetails: React.FC<SignerDetailsProps> = ({ signer }) => {
       setIsLoading(true);
       setError(null);
       
-      if (!signer) {
+      if (!signerKey) {
         setIsLoading(false);
         return;
       }
 
       try {
-        const signerData = await fetchSignerMetrics(signer);
+        const signerData = await fetchSignerMetrics(signerKey);
         if (signerData) {
           setSignerDetails(signerData);
         } else {
@@ -81,7 +79,7 @@ const SignerDetails: React.FC<SignerDetailsProps> = ({ signer }) => {
     };
 
     getSignerDetails();
-  }, [signer]);
+  }, [signerKey]);
 
   const renderErrorState = () => (
     <div className="bg-red-50 dark:bg-red-900 border-l-4 border-red-400 dark:border-red-600 p-4 rounded">

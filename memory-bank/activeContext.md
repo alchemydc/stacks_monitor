@@ -1,9 +1,17 @@
 # Active Context
 
 ## Current Work Focus
-Preparing to implement SQLite database integration for user preferences and historical data
+The UI is under heavy development and requires significant refinement. Current focus areas:
+- Improving user experience and navigation flow
+- Enhancing visual consistency across components
+- Making the UI more intuitive and responsive
+- Refining the landing page and signer details pages
 
 ## Recent Changes
+- Implemented new SignerMetricsTable component that displays metrics for all signers in the current cycle
+- Added cycle navigation feature to view historical signer metrics data
+- Created direct links from the metrics table to individual signer detail pages
+- Enhanced navigation with a dedicated "Metrics" section in the header
 - Created the initial memory bank files: `productContext.md`, `systemPatterns.md`, and `techContext.md`.
 - Documented the project overview, system architecture, and technical context.
 - Read all memory bank files.
@@ -58,5 +66,6 @@ Preparing to implement SQLite database integration for user preferences and hist
 - The Stacks API integration now correctly fetches signer data using the `/v2/pox` endpoint to determine the current cycle.
 
 ## Recent Documentation Updates
-- Reviewed all memory bank files on 2025-04-04
+- Updated progress.md and activeContext.md with UI development status and SignerMetricsTable implementation (2025-04-16)
 - Updated progress.md and activeContext.md with SignerDetails improvements (2025-04-15)
+- Reviewed all memory bank files on 2025-04-04
