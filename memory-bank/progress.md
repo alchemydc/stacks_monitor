@@ -20,10 +20,16 @@
 - Implemented the SignerSelector component to allow users to select a single signer to monitor.
 - Created a new component called `SignerDetails` to show the details for a selected signer.
 - Created a new API call to fetch signer metrics for a particular signer during the current cycle.
+- Enhanced SignerDetails component with comprehensive improvements:
+  - Organized metrics into logical sections (Performance, Staking, Technical)
+  - Added visual status indicators for key metrics based on thresholds
+  - Implemented loading skeleton animation for better UX
+  - Added robust error handling with user-friendly messages
+  - Improved responsive design with grid layouts
+  - Enhanced dark mode support with better contrast
+  - Added proper number formatting and date localization
 
 ## What's Left to Build
-- Update the `SignerDetails` component to display the signer metrics.
-- Work on the UI to make it less buggy and better looking.
 - Set up the SQLite database for storing user preferences and historical data.
 - AlertsPanel component
 - Configuration settings
@@ -32,14 +38,14 @@
 - Deployment pipeline
 
 ## Current Status
-- The project is in the initial setup phase.
+- The project is in active development with core features being implemented.
 - The memory bank has been initialized with core documentation files.
-- The development environment is being configured.
-- A link to the POX info page has been added to the landing page.
-- The POX data is now displayed correctly on the POX data page.
-- The SignerSelector component is now implemented and allows users to select a single signer to monitor.
-- The SignerDetails component is now implemented and displays the details for the selected signer.
-- A new API call has been created to fetch signer metrics for a particular signer during the current cycle.
+- The development environment is fully configured with Vite and React.
+- The main UI components are implemented and functional:
+  - POX info page displays current cycle data
+  - SignerSelector allows users to choose a signer
+  - SignerDetails shows comprehensive metrics with visual indicators
+- The Stacks API integration is working efficiently with proper error handling.
 
 ## Known Issues
 - None
