@@ -16,6 +16,9 @@ Cleaning up the StacksAPIService
   - Implemented both ascending and descending sort orders
   - Added intuitive sort indicators (↕️ and directional arrows)
   - Made sortable columns visually distinct with hover effects
+- Fixed uSTX to STX conversion in metrics:
+  - Correctly convert and display stacked amount as STX in both SignerMetricsTable and SignerDetails
+  - Updated both display and sorting logic to use STX values
 - Made significant UI/UX improvements:
   - Added POX Data display to the landing page
   - Removed redundant "View POX Data" button from landing page
