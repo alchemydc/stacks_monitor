@@ -5,12 +5,14 @@ import type { CycleSigner } from '../services/StacksAPIService';
 
 interface SignerMetricsTableProps {
   currentCycle: number;
+  loading: boolean;
+  error: Error | null;
 }
 
 type SortCriteria = 'stackedAmount' | 'responseTime';
 type SortOrder = 'asc' | 'desc';
 
-const SignerMetricsTable: React.FC<SignerMetricsTableProps> = ({ currentCycle }) => {
+const SignerMetricsTable: React.FC<SignerMetricsTableProps> = ({ currentCycle, loading: parentLoading, error: parentError }) => {
   const [metrics, setMetrics] = useState<CycleSigner | null>(null);
   const [selectedCycle, setSelectedCycle] = useState(currentCycle);
   const [loading, setLoading] = useState(true);
@@ -71,7 +73,7 @@ const SignerMetricsTable: React.FC<SignerMetricsTableProps> = ({ currentCycle })
     setSelectedCycle(Number(event.target.value));
   };
 
-  if (loading) {
+  if (parentLoading || loading) {
     return (
       <div className="flex justify-center items-center p-8">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
@@ -79,10 +81,10 @@ const SignerMetricsTable: React.FC<SignerMetricsTableProps> = ({ currentCycle })
     );
   }
 
-  if (error) {
+  if (parentError || error) {
     return (
       <div className="text-red-600 p-4 rounded-lg bg-red-50">
-        <p>{error}</p>
+        <p>{parentError?.message || error}</p>
       </div>
     );
   }
@@ -157,7 +159,7 @@ const SignerMetricsTable: React.FC<SignerMetricsTableProps> = ({ currentCycle })
                   <div className="flex items-center">
                     <div className={`h-2.5 w-2.5 rounded-full mr-2 ${
                       signer.average_response_time_ms === 0 ? 'bg-red-500' :
-                      signer.average_response_time_ms < 10000 ? 'bg-green-500' : 'bg-yellow-500'
+                      signer.average_response_time_ms < 5000 ? 'bg-green-500' : 'bg-yellow-500'
                     }`}></div>
                     {signer.average_response_time_ms}ms
                     {signer.average_response_time_ms === 0 && (

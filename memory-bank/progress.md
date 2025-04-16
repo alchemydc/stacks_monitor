@@ -10,8 +10,8 @@
   - Intuitive sort indicators and hover effects
   - Smart response time thresholds:
     - 0ms shows as DOWN with red indicator
-    - >0ms to <10000ms shows as good with green indicator
-    - ≥10000ms shows as warning with yellow indicator
+    - >0ms to <5000ms shows as good with green indicator
+    - ≥5000ms shows as warning with yellow indicator
 - Created the initial memory bank files: `projectbrief.md`, `productContext.md`, `systemPatterns.md`, `techContext.md`, and `activeContext.md`.
 - Documented the project overview, system architecture, technical context, and current work focus.
 - Read all memory bank files.
@@ -31,6 +31,12 @@
 - Implemented the SignerSelector component to allow users to select a single signer to monitor.
 - Created a new component called `SignerDetails` to show the details for a selected signer.
 - Created a new API call to fetch signer metrics for a particular signer during the current cycle.
+- Improved UI and navigation:
+  - Added POX Data display to the landing page
+  - Removed redundant "View POX Data" button
+  - Made "Stacks Monitoring Tools" header text a home link
+  - Renamed "Metrics" to "Signer Metrics" throughout UI
+  - Updated route from /metrics to /signer-metrics for clarity
 - Enhanced SignerDetails component with comprehensive improvements:
   - Organized metrics into logical sections (Performance, Staking, Technical)
   - Added visual status indicators for key metrics based on thresholds
@@ -63,10 +69,14 @@
 - The Stacks API integration is working efficiently with proper error handling.
 
 ## Known Issues
-- None
+- Signer metrics API can be slow (up to 40s response time)
+  - Planned solution: Implement in-memory caching with 5-minute expiry
 
 ## Evolution of Project Decisions
 - TypeScript was chosen for type safety and improved developer experience.
 - SQLite was selected for its simplicity and ease of use during development.
+- Due to slow API response times, decided to implement in-memory caching for signer metrics
+  - Cache expiry set to 5 minutes based on data update frequency
+  - Improves user experience while maintaining data freshness
 - Added "Recent Documentation Updates" section to `activeContext.md`
 - Reviewed all memory bank files

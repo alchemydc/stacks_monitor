@@ -1,9 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PoxDataDisplay from './PoxDataDisplay';
+import type { PoxResponse } from '../types';
 
-const LandingPage: React.FC = () => {
+interface LandingPageProps {
+  poxData: PoxResponse | null;
+  loading: boolean;
+  error: Error | null;
+}
+
+const LandingPage: React.FC<LandingPageProps> = ({ poxData, loading, error }) => {
   return (
-    <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 max-w-4xl mx-auto dark:shadow-indigo-500/20">
+    <div>
+      <section className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 max-w-4xl mx-auto dark:shadow-indigo-500/20">
       <h2 className="text-3xl font-semibold text-gray-900 dark:text-white mb-4">
         Monitor Your Stacks Network Performance
       </h2>
@@ -11,18 +20,12 @@ const LandingPage: React.FC = () => {
         Real-time monitoring and alerts for Stacks blockchain signers. Track performance metrics, 
         ensure optimal staking, and never miss important network events.
       </p>
-      <div className="flex gap-4 mb-8">
+      <div className="mb-8">
         <Link 
-          to="/signers" 
+          to="/signer-metrics" 
           className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-500 transition-colors duration-200 font-medium"
         >
-          Start Monitoring
-        </Link>
-        <Link 
-          to="/poxdata" 
-          className="bg-white dark:bg-gray-700 text-indigo-600 dark:text-indigo-400 border border-indigo-600 dark:border-indigo-400 px-6 py-3 rounded-lg hover:bg-indigo-50 dark:hover:bg-gray-600 transition-colors duration-200 font-medium"
-        >
-          View POX Data
+          View Signer Metrics
         </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -36,10 +39,14 @@ const LandingPage: React.FC = () => {
         </div>
         <div className="p-4 bg-indigo-50 dark:bg-gray-700 rounded-lg">
           <h3 className="font-semibold text-gray-900 dark:text-white mb-2">POX Cycle Tracking</h3>
-          <p className="text-gray-600 dark:text-gray-400">Stay informed about upcoming POX cycle changes.</p>
+          <p className="text-gray-600 dark:text-gray-400">Know when you're about to get priced out of the active set.</p>
         </div>
       </div>
-    </section>
+      </section>
+      <div className="mt-8">
+        <PoxDataDisplay poxData={poxData} loading={loading} error={error} />
+      </div>
+    </div>
   );
 };
 
