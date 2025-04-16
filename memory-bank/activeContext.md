@@ -7,16 +7,25 @@ The UI is under heavy development and requires significant refinement. Current f
 - Making the UI more intuitive and responsive
 - Refining the landing page and signer details pages
 
+Cleaning up the StacksAPIService
+
+
 ## Recent Changes
 - Enhanced SignerMetricsTable with sorting functionality:
   - Added ability to sort by Stacked Amount and Response Time
   - Implemented both ascending and descending sort orders
   - Added intuitive sort indicators (↕️ and directional arrows)
   - Made sortable columns visually distinct with hover effects
-- Updated response time thresholds and status indicators:
-  - 0ms: Red with "DOWN" label
-  - >0ms and <10000ms: Green
-  - ≥10000ms: Yellow
+- Made significant UI/UX improvements:
+  - Added POX Data display to the landing page
+  - Removed redundant "View POX Data" button from landing page
+  - Made "Stacks Monitoring Tools" header text a link to home
+  - Renamed "Metrics" to "Signer Metrics" throughout UI for clarity
+  - Updated route from /metrics to /signer-metrics
+  - Updated response time thresholds and status indicators:
+    - 0ms: Red with "DOWN" label and "Signer is not responding" message
+    - >0ms and <5000ms: Green
+    - ≥5000ms: Yellow
 - Implemented new SignerMetricsTable component that displays metrics for all signers in the current cycle
 - Added cycle navigation feature to view historical signer metrics data
 - Created direct links from the metrics table to individual signer detail pages
@@ -53,16 +62,18 @@ The UI is under heavy development and requires significant refinement. Current f
   - Base API URI: `https://api.hiro.so`
   - `/v2/pox`: Used to determine the current POX data.
   - `/signer-metrics/v1/cycles/{currentCycle}/signers`: Used to get info about all of the signers that are active for a given POX cycle.
+    - Note: This endpoint can be slow at times (up to 40s response time).
+    - Recommended mitigation: Implement in-memory caching with 5-minute expiry.
 - **Data Structure**:
   - The data structure for POX data is defined by the `PoxResponse` interface in `src/services/StacksAPIService.ts`.
   - The data structure for signer data is defined by the `CycleSigner` and `Signer` interfaces in `src/services/StacksAPIService.ts`.
   - Note: The signers API may sometimes return no results despite a HTTP 200 OK response.
 - **Alert Thresholds**:
-  - STX Balance: 100,000 STX
+  - STX Balance: 160,000 STX
   - Response Time: 
     - 0ms: DOWN (Critical)
-    - >0ms and <10000ms: Good
-    - ≥10000ms: Warning
+    - >0ms and <5000ms: Good
+    - ≥5000ms: Warning
   - Block Participation Rate: 95%
 - **Notification Mechanism**: Discord
 
@@ -74,6 +85,9 @@ The UI is under heavy development and requires significant refinement. Current f
 
 ## Learnings and Project Insights
 - The Stacks Signer API provides comprehensive data about signers on the Stacks blockchain.
+  - API response times can be slow for signer metrics.
+  - Data changes infrequently, making it suitable for caching.
+  - In-memory caching with expiry can significantly improve UX.
 - Tailwind CSS enables rapid UI development with consistent design patterns.
 - The Stacks API integration now correctly fetches signer data using the `/v2/pox` endpoint to determine the current cycle.
 

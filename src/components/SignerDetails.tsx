@@ -3,8 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { fetchSignerMetrics, Signer } from '../services/StacksAPIService';
 
 // Constants for thresholds
-const STX_THRESHOLD = 100000;
-const LATENCY_THRESHOLD = 500;
+const STX_THRESHOLD = 160000;
+const LATENCY_THRESHOLD = 5000;
 const PARTICIPATION_THRESHOLD = 95;
 
 // Helper function to format numbers with commas
@@ -207,9 +207,17 @@ const SignerDetails: React.FC = () => {
               {/* Response Time */}
               <MetricCard
                 title="Average Response Time"
-                value={`${signerDetails.average_response_time_ms.toFixed(1)} ms`}
-                subValue="Network latency"
-                status={signerDetails.average_response_time_ms <= LATENCY_THRESHOLD ? 'success' : 'warning'}
+                value={signerDetails.average_response_time_ms === 0 
+                  ? "DOWN" 
+                  : `${signerDetails.average_response_time_ms.toFixed(1)} ms`}
+                subValue={signerDetails.average_response_time_ms === 0 
+                  ? "Signer is not responding" 
+                  : "Network latency"}
+                status={signerDetails.average_response_time_ms === 0 
+                  ? 'error'
+                  : signerDetails.average_response_time_ms < LATENCY_THRESHOLD 
+                  ? 'success' 
+                  : 'warning'}
               />
 
               {/* Stacked Amount */}
