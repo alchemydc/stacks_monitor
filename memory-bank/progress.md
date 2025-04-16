@@ -40,6 +40,11 @@
   - Made "Stacks Monitoring Tools" header text a home link
   - Renamed "Metrics" to "Signer Metrics" throughout UI
   - Updated route from /metrics to /signer-metrics for clarity
+- Enhanced next cycle warning system in SignerDetails:
+  - Added comparison with next cycle's min_threshold_ustx
+  - Shows yellow warning state when signer's amount is insufficient
+  - Added clear indicator text showing if signer will be included in next cycle
+  - Integrated POX data for threshold comparisons
 - Enhanced SignerDetails component with comprehensive improvements:
   - Organized metrics into logical sections (Performance, Staking, Technical)
   - Added visual status indicators for key metrics based on thresholds

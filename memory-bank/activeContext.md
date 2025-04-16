@@ -11,6 +11,11 @@ Cleaning up the StacksAPIService
 
 
 ## Recent Changes
+- Enhanced SignerDetails to show next cycle threshold warnings:
+  - Added POX data integration to SignerDetails component
+  - Implemented comparison against next cycle's min_threshold_ustx
+  - Added yellow warning state when signer is below next cycle's threshold
+  - Added "Below/Above next cycle threshold" indicator text
 - Enhanced SignerMetricsTable with sorting functionality:
   - Added ability to sort by Stacked Amount and Response Time
   - Implemented both ascending and descending sort orders
