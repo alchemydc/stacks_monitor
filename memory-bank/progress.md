@@ -1,6 +1,11 @@
 # Progress
 
 ## What Works
+- Implemented SignerMetricsTable component with:
+  - Display of all signers' metrics in the current cycle
+  - Historical metrics viewing with cycle navigation
+  - Direct links to individual signer detail pages
+  - Responsive table design with visual status indicators
 - Created the initial memory bank files: `projectbrief.md`, `productContext.md`, `systemPatterns.md`, `techContext.md`, and `activeContext.md`.
 - Documented the project overview, system architecture, technical context, and current work focus.
 - Read all memory bank files.
@@ -30,6 +35,7 @@
   - Added proper number formatting and date localization
 
 ## What's Left to Build
+- Cleaning up the app and making the UI, landing page and signer details pages more usable.
 - Set up the SQLite database for storing user preferences and historical data.
 - AlertsPanel component
 - Configuration settings
@@ -39,12 +45,15 @@
 
 ## Current Status
 - The project is in active development with core features being implemented.
-- The memory bank has been initialized with core documentation files.
-- The development environment is fully configured with Vite and React.
+- The UI is under heavy development and needs significant refinement:
+  - Navigation and user flow needs improvement
+  - Visual consistency across components needs work
+  - Responsive design requires further testing and optimization
 - The main UI components are implemented and functional:
   - POX info page displays current cycle data
   - SignerSelector allows users to choose a signer
   - SignerDetails shows comprehensive metrics with visual indicators
+  - SignerMetricsTable provides overview of all signers' performance
 - The Stacks API integration is working efficiently with proper error handling.
 
 ## Known Issues
