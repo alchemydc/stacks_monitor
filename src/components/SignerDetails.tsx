@@ -223,9 +223,9 @@ const SignerDetails: React.FC = () => {
               {/* Stacked Amount */}
               <MetricCard
                 title="Stacked STX"
-                value={formatNumber(signerDetails.stacked_amount)}
+                value={formatNumber(Number(signerDetails.stacked_amount) / 1_000_000)}
                 subValue={`Rank: #${signerDetails.stacked_amount_rank}`}
-                status={Number(signerDetails.stacked_amount) >= STX_THRESHOLD ? 'success' : 'error'}
+                status={Number(signerDetails.stacked_amount) / 1_000_000 >= STX_THRESHOLD ? 'success' : 'error'}
               />
             </div>
           </div>

@@ -31,6 +31,9 @@
 - Implemented the SignerSelector component to allow users to select a single signer to monitor.
 - Created a new component called `SignerDetails` to show the details for a selected signer.
 - Created a new API call to fetch signer metrics for a particular signer during the current cycle.
+- Fixed uSTX to STX conversion in metrics:
+  - Stacked amount now correctly displayed as STX in both SignerMetricsTable and SignerDetails
+  - Sorting and comparisons now use the correct STX value
 - Improved UI and navigation:
   - Added POX Data display to the landing page
   - Removed redundant "View POX Data" button

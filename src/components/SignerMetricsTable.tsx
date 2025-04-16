@@ -36,8 +36,8 @@ const SignerMetricsTable: React.FC<SignerMetricsTableProps> = ({ currentCycle, l
     
     return [...metrics.results].sort((a, b) => {
       if (sortCriteria === 'stackedAmount') {
-        const aValue = parseInt(a.stacked_amount);
-        const bValue = parseInt(b.stacked_amount);
+        const aValue = Number(a.stacked_amount) / 1_000_000;
+        const bValue = Number(b.stacked_amount) / 1_000_000;
         return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
       } else {
         const aValue = a.average_response_time_ms;
@@ -144,7 +144,7 @@ const SignerMetricsTable: React.FC<SignerMetricsTableProps> = ({ currentCycle, l
                   </Link>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
-                  {parseInt(signer.stacked_amount).toLocaleString()} STX
+                  {(Number(signer.stacked_amount) / 1_000_000).toLocaleString()} STX
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
                   <div>
