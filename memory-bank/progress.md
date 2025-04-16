@@ -6,6 +6,12 @@
   - Historical metrics viewing with cycle navigation
   - Direct links to individual signer detail pages
   - Responsive table design with visual status indicators
+  - Sortable columns for Stacked Amount and Response Time
+  - Intuitive sort indicators and hover effects
+  - Smart response time thresholds:
+    - 0ms shows as DOWN with red indicator
+    - >0ms to <10000ms shows as good with green indicator
+    - ≥10000ms shows as warning with yellow indicator
 - Created the initial memory bank files: `projectbrief.md`, `productContext.md`, `systemPatterns.md`, `techContext.md`, and `activeContext.md`.
 - Documented the project overview, system architecture, technical context, and current work focus.
 - Read all memory bank files.

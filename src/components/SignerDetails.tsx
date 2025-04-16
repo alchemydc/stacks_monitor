@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchSignerMetrics, Signer } from '../services/StacksAPIService';
 
 // Constants for thresholds
@@ -47,6 +47,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ title, value, subValue, status 
 };
 
 const SignerDetails: React.FC = () => {
+  const navigate = useNavigate();
   const { signerKey } = useParams<{ signerKey: string }>();
   const [signerDetails, setSignerDetails] = useState<Signer | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -99,7 +100,18 @@ const SignerDetails: React.FC = () => {
   if (isLoading) {
     return (
       <div className="bg-white dark:bg-gray-800 rounded-lg px-6 py-8 ring shadow-xl ring-gray-900/5">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Signer Details</h2>
+        <div className="flex justify-between items-center mb-6">
+        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Signer Details</h2>
+        <button
+          onClick={() => navigate(-1)}
+          className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors duration-200"
+          aria-label="Close"
+        >
+          <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
         <div className="space-y-6">
           {/* Signer Info Skeleton */}
           <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
@@ -148,8 +160,19 @@ const SignerDetails: React.FC = () => {
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg px-6 py-8 ring shadow-xl ring-gray-900/5">
-      <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Signer Details</h2>
-      {error ? renderErrorState() : signerDetails ? (
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Signer Details</h2>
+          <button
+            onClick={() => navigate(-1)}
+            className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors duration-200"
+            aria-label="Close"
+          >
+            <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        {error ? renderErrorState() : signerDetails ? (
         <div className="space-y-6">
           {/* Signer Identification */}
           <div className="border-b border-gray-200 dark:border-gray-700 pb-4">
@@ -204,34 +227,34 @@ const SignerDetails: React.FC = () => {
             <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">Detailed Statistics</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
-                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Block Statistics</h4>
+                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-200">Block Statistics</h4>
                 <div className="mt-2 space-y-1">
-                  <p className="text-sm">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
                     <span className="text-green-600 dark:text-green-400">{signerDetails.proposals_accepted_count}</span> Accepted
                   </p>
-                  <p className="text-sm">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
                     <span className="text-red-600 dark:text-red-400">{signerDetails.proposals_rejected_count}</span> Rejected
                   </p>
-                  <p className="text-sm">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
                     <span className="text-yellow-600 dark:text-yellow-400">{signerDetails.proposals_missed_count}</span> Missed
                   </p>
                 </div>
               </div>
 
               <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
-                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Weight Details</h4>
+                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-200">Weight Details</h4>
                 <div className="mt-2 space-y-1">
-                  <p className="text-sm">Weight: {signerDetails.weight}</p>
-                  <p className="text-sm">Percentage: {signerDetails.weight_percentage.toFixed(2)}%</p>
-                  <p className="text-sm">Slot Index: {signerDetails.slot_index}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Weight: {signerDetails.weight}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Percentage: {signerDetails.weight_percentage.toFixed(2)}%</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Slot Index: {signerDetails.slot_index}</p>
                 </div>
               </div>
 
               <div className="bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
-                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300">Staking Details</h4>
+                <h4 className="text-sm font-medium text-gray-700 dark:text-gray-200">Staking Details</h4>
                 <div className="mt-2 space-y-1">
-                  <p className="text-sm">Amount %: {signerDetails.stacked_amount_percent.toFixed(2)}%</p>
-                  <p className="text-sm">Global Rank: #{signerDetails.stacked_amount_rank}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Amount %: {signerDetails.stacked_amount_percent.toFixed(2)}%</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">Global Rank: #{signerDetails.stacked_amount_rank}</p>
                 </div>
               </div>
             </div>

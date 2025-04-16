@@ -8,6 +8,15 @@ The UI is under heavy development and requires significant refinement. Current f
 - Refining the landing page and signer details pages
 
 ## Recent Changes
+- Enhanced SignerMetricsTable with sorting functionality:
+  - Added ability to sort by Stacked Amount and Response Time
+  - Implemented both ascending and descending sort orders
+  - Added intuitive sort indicators (↕️ and directional arrows)
+  - Made sortable columns visually distinct with hover effects
+- Updated response time thresholds and status indicators:
+  - 0ms: Red with "DOWN" label
+  - >0ms and <10000ms: Green
+  - ≥10000ms: Yellow
 - Implemented new SignerMetricsTable component that displays metrics for all signers in the current cycle
 - Added cycle navigation feature to view historical signer metrics data
 - Created direct links from the metrics table to individual signer detail pages
@@ -50,7 +59,10 @@ The UI is under heavy development and requires significant refinement. Current f
   - Note: The signers API may sometimes return no results despite a HTTP 200 OK response.
 - **Alert Thresholds**:
   - STX Balance: 100,000 STX
-  - Latency: 500ms
+  - Response Time: 
+    - 0ms: DOWN (Critical)
+    - >0ms and <10000ms: Good
+    - ≥10000ms: Warning
   - Block Participation Rate: 95%
 - **Notification Mechanism**: Discord
 

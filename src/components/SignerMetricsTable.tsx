@@ -7,11 +7,48 @@ interface SignerMetricsTableProps {
   currentCycle: number;
 }
 
+type SortCriteria = 'stackedAmount' | 'responseTime';
+type SortOrder = 'asc' | 'desc';
+
 const SignerMetricsTable: React.FC<SignerMetricsTableProps> = ({ currentCycle }) => {
   const [metrics, setMetrics] = useState<CycleSigner | null>(null);
   const [selectedCycle, setSelectedCycle] = useState(currentCycle);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [sortCriteria, setSortCriteria] = useState<SortCriteria>('responseTime');
+  const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
+
+  const handleSort = (criteria: SortCriteria) => {
+    if (sortCriteria === criteria) {
+      // Toggle sort order if clicking the same criteria
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    } else {
+      // Set new criteria and default to descending order
+      setSortCriteria(criteria);
+      setSortOrder('desc');
+    }
+  };
+
+  const getSortedResults = () => {
+    if (!metrics?.results) return [];
+    
+    return [...metrics.results].sort((a, b) => {
+      if (sortCriteria === 'stackedAmount') {
+        const aValue = parseInt(a.stacked_amount);
+        const bValue = parseInt(b.stacked_amount);
+        return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+      } else {
+        const aValue = a.average_response_time_ms;
+        const bValue = b.average_response_time_ms;
+        return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+      }
+    });
+  };
+
+  const getSortIndicator = (criteria: SortCriteria) => {
+    if (sortCriteria !== criteria) return null;
+    return sortOrder === 'asc' ? '↑' : '↓';
+  };
 
   useEffect(() => {
     const loadMetrics = async () => {
@@ -76,19 +113,25 @@ const SignerMetricsTable: React.FC<SignerMetricsTableProps> = ({ currentCycle })
               <th className="px-6 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Signer Key
               </th>
-              <th className="px-6 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                Stacked Amount
+              <th 
+                className="px-6 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:text-gray-700 dark:hover:text-gray-200 select-none"
+                onClick={() => handleSort('stackedAmount')}
+              >
+                Stacked Amount ↕️
               </th>
               <th className="px-6 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                 Performance
               </th>
-              <th className="px-6 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                Status
+              <th 
+                className="px-6 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:text-gray-700 dark:hover:text-gray-200 select-none"
+                onClick={() => handleSort('responseTime')}
+              >
+                Status ↕️ {getSortIndicator('responseTime')}
               </th>
             </tr>
           </thead>
           <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-600">
-            {metrics?.results.map((signer) => (
+            {getSortedResults().map((signer) => (
               <tr key={signer.signer_key}>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
                   <Link 
@@ -110,12 +153,16 @@ const SignerMetricsTable: React.FC<SignerMetricsTableProps> = ({ currentCycle })
                     Missed: {signer.proposals_missed_count}
                   </div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-200">
                   <div className="flex items-center">
                     <div className={`h-2.5 w-2.5 rounded-full mr-2 ${
-                      signer.average_response_time_ms < 500 ? 'bg-green-500' : 'bg-yellow-500'
+                      signer.average_response_time_ms === 0 ? 'bg-red-500' :
+                      signer.average_response_time_ms < 10000 ? 'bg-green-500' : 'bg-yellow-500'
                     }`}></div>
                     {signer.average_response_time_ms}ms
+                    {signer.average_response_time_ms === 0 && (
+                      <span className="ml-2 text-red-600 dark:text-red-400 font-medium">DOWN</span>
+                    )}
                   </div>
                 </td>
               </tr>
