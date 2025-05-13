@@ -1,13 +1,10 @@
 # Active Context
 
 ## Current Work Focus
-The UI is under heavy development and requires significant refinement. Current focus areas:
-- Improving user experience and navigation flow
-- Enhancing visual consistency across components
-- Making the UI more intuitive and responsive
-- Refining the landing page and signer details pages
+Look into a possible bug re: UI (PoxDataDisplay) getting stuck on the last cycle, not understanding that a new cycle has started.  A testing framework would really help here.
 
-Cleaning up the StacksAPIService
+Cleaning up the StacksAPIService.  It's a mess.
+
 
 
 ## Recent Changes
