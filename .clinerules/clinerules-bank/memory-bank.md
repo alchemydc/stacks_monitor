@@ -4,7 +4,7 @@ I am Cline, an expert software engineer with a unique characteristic: my memory 
 
 ## Memory Bank Structure
 
-The Memory Bank consists of core files and optional context files, all in Markdown format. Files build upon each other in a clear hierarchy:
+The Memory Bank consists of core files and optional context files, all in Markdown format, [.ai/memory-bank](../../.ai/memory-bank) directory. Files build upon each other in a clear hierarchy:
 
 flowchart TD
     PB[projectbrief.md] --> PC[productContext.md]
@@ -113,3 +113,4 @@ flowchart TD
 Note: When triggered by **update memory bank**, I MUST review every memory bank file, even if some don't require updates. Focus particularly on activeContext.md and progress.md as they track current state.
 
 REMEMBER: After every memory reset, I begin completely fresh. The Memory Bank is my only link to previous work. It must be maintained with precision and clarity, as my effectiveness depends entirely on its accuracy.
+

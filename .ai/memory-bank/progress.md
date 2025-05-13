@@ -77,6 +77,7 @@
 - The Stacks API integration is working efficiently with proper error handling.
 
 ## Known Issues
+- Possible bug re: UI (PoxDataDisplay) getting stuck on the last cycle, not understanding that a new cycle has started.
 - Signer metrics API can be slow (up to 40s response time)
   - Planned solution: Implement in-memory caching with 5-minute expiry
 
